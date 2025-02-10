@@ -19,6 +19,7 @@ copy="Example"
 actions.standard_rotation=flamestrike,if=active_enemies>=variable.hot_streak_flamestrike&(buff.hot_streak.react|buff.hyperthermia.react)
 actions.standard_rotation+=/pyroblast,if=buff.hot_streak.react|buff.hyperthermia.react
 ```
+or see [apl.simc](https://github.com/Verververver/APL_Helper_Scripts/blob/main/apl.simc)
 
 **Assumptions**
 
