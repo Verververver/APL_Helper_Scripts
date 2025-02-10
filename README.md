@@ -7,23 +7,23 @@
 **Splitter** - Goes through each line and splits the | (OR) condition.
 
 # Instructions
-1. Put your APL into "apl.simc"
+1. Put your APL into "apl.simc" [(See example-input-and-apl-assumptions)](#example-input-and-apl-assumptions)
+2. Edit argument parameters if needed
+3. Run the relevant python script
 
+# Example input and APL Assumptions
 Example input should look like 
 ```
-{
 copy="Example"
 
 actions.standard_rotation=flamestrike,if=active_enemies>=variable.hot_streak_flamestrike&(buff.hot_streak.react|buff.hyperthermia.react)
 actions.standard_rotation+=/pyroblast,if=buff.hot_streak.react|buff.hyperthermia.react
-}
 ```
+
 **Assumptions**
-The code is designed so that it assumes the following
+
+The code is designed so that it assumes the following:
  - No duplicate lines
  - Correct format and notations
-
-2. Edit argument parameters if needed
-3. Run the relevant python script
 
 
