@@ -19,7 +19,7 @@ The code is designed so that it assumes the following:
  - Correct format and notations
  - The code is not designed to handle an entire APL paste (e.g., multile profiles of AOE and ST) but instead one profile at a time (e.g., single target APL)
 
-Example input should look like 
+**Example input should look like **
 ```
 copy="Example"
 talents=CAEAAAAAAAAAAAAAAAAAAAAAAYGbmtZBzwY2MYmZ0YMzYGzwwMYmZmZmZegZmZGzMzYmZZmmZWmFAAA0CAAAAAAGAAAAAAAAA
