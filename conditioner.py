@@ -26,7 +26,7 @@ def condition(input_filename, output_filename, new_cond, operator, set_iteration
             else:
                 iterations = int(600000 / perms_count)  # +2 one for idx starts 1 and another for default profile
             f.write("# Profile Count = " + str(perms_count) + "\n")
-            f.write("# iterations=" + str(iterations) + "\n\n")
+            f.write("iterations=" + str(iterations) + "\n\n")
         f.write(new_apl)
 
 # Input file name, output filename, what condition you want to test at a specific line, what operator you want, display iterations
