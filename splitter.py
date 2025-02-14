@@ -17,6 +17,14 @@ def split(input_filename, output_filename):
             new_apl = new_apl.replace(line + "\n", new_conditions, 1)
             print(f"\nReplacing line:\n{line}\nWith:\n{new_conditions}")
     print(new_apl)
+
+    # Data Clean with proper = and +=/
+    new_apl = re.sub(r"(actions\.\w+)=(?=\w+\,)", r"\1+=/", new_apl, re.MULTILINE)
+    for line in new_apl.split("\n"):
+        if "action" in line:
+            new_apl = new_apl.replace(line, line.replace("+=/", "="), 1)
+            break
+
     with open(output_filename, "w") as f:
          f.write(new_apl)
 
@@ -102,4 +110,5 @@ def get_first_split_condition_at_level(condition_exp, detected_level):
 
 
 # Input and output filename
-split("apl.simc", "splitter.simc")
+split(input_filename="apl.simc",
+      output_filename="splitter.simc")

@@ -1,4 +1,4 @@
-def condition(input_filename, output_filename, new_cond, operator, set_iterations=True):
+def condition(input_filename, output_filename, new_condition, operator, set_iterations=True, max_iterations=600000, profile_sets=60):
     with open(input_filename) as file:
         apl = file.read()
 
@@ -8,9 +8,9 @@ def condition(input_filename, output_filename, new_cond, operator, set_iteration
         if "action" in line:
             if "if=" in line:
                 prefix, conditions = line.split("if=", 1)
-                temp_apl = apl.replace(line + "\n", prefix + "if=" + new_cond + operator + "(" + conditions + ")" + "\n#Added Above#\n", 1)
+                temp_apl = apl.replace(line + "\n", prefix + "if=" + new_condition + operator + "(" + conditions + ")" + "\n#Added Above#\n", 1)
             else:
-                temp_apl = apl.replace(line + "\n", line + ",if=" + new_cond + "\n#Added Above#\n", 1)
+                temp_apl = apl.replace(line + "\n", line + ",if=" + new_condition + "\n#Added Above#\n", 1)
             for temp_line in temp_apl.split("\n"):
                 if "action" in temp_line:
                     temp_apl = temp_apl.replace(temp_line, temp_line.replace("+=/", "="), 1)
@@ -21,13 +21,19 @@ def condition(input_filename, output_filename, new_cond, operator, set_iteration
 
     with open(output_filename, "w") as f:
         if set_iterations:
-            if perms_count > 60:
-                iterations = int(600000 / 60)
+            if perms_count > profile_sets:
+                iterations = int(max_iterations / profile_sets)
             else:
-                iterations = int(600000 / perms_count)  # +2 one for idx starts 1 and another for default profile
+                iterations = int(max_iterations / perms_count)  # +2 one for idx starts 1 and another for default profile
             f.write("# Profile Count = " + str(perms_count) + "\n")
-            f.write("iterations=" + str(iterations) + "\n\n")
+            f.write("# iterations=" + str(iterations) + "\n\n")
         f.write(new_apl)
 
-# Input file name, output filename, what condition you want to test at a specific line, what operator you want, display iterations
-condition("apl.simc", "conditioned.simc", "buff.icy_veins.react", "&", set_iterations=True)
+
+condition(input_filename="apl.simc",
+          output_filename="conditioned.simc",
+          new_condition="buff.icy_veins.react",
+          operator="&",
+          set_iterations=True,
+          max_iterations=320000000,
+          profile_sets=200)
