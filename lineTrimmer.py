@@ -5,12 +5,12 @@ def linetrimmer(input_filename, output_filename, set_iterations=True, max_iterat
     new_apl = ""
     perms_count = 1
     for line in apl.split("\n"):
-        if line and "action" in line:
+        if line and "actions." in line:
             temp_apl = apl.replace(line, "# " + line + "\n" + "# Disabled line above")
 
             # Make sure first line has =
             for temp_line in temp_apl.split("\n"):
-                if "action" in temp_line and not "# action" in temp_line:
+                if "actions." in temp_line and not "# actions." in temp_line:
                     temp_apl = temp_apl.replace(temp_line, temp_line.replace("+=/", "="))
                     break
 

@@ -5,14 +5,14 @@ def condition(input_filename, output_filename, new_condition, operator, set_iter
     new_apl = ""
     perms_count = 1
     for idx, line in enumerate(apl.split("\n")):
-        if "action" in line:
+        if "actions." in line:
             if "if=" in line:
                 prefix, conditions = line.split("if=", 1)
                 temp_apl = apl.replace(line + "\n", prefix + "if=" + new_condition + operator + "(" + conditions + ")" + "\n#Added Above#\n", 1)
             else:
                 temp_apl = apl.replace(line + "\n", line + ",if=" + new_condition + "\n#Added Above#\n", 1)
             for temp_line in temp_apl.split("\n"):
-                if "action" in temp_line:
+                if "actions." in temp_line:
                     temp_apl = temp_apl.replace(temp_line, temp_line.replace("+=/", "="), 1)
                     break
             new_apl = new_apl + temp_apl.replace("mage=", "copy=").replace("copy=\"", "copy=\"CondL" + str(perms_count)) + "\n\n\n"
